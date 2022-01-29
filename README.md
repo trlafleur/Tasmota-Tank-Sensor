@@ -2,7 +2,7 @@
 Tasmota-Berry Tank Sensor for fuel-oil using VL53L1X or SR04 sensor
 
 
-***The Sensor body***
+## The Sensor body
 
 The sensor was prepared with 4 x 28awg 6inch wires that will connected later to the ESP32 board. The sensor body was made from a 2in PVC coupling, threaded on one end for the tank, and “slip” fitting on the other. A sheet of clear 1/16in Lexan was cut with a 2 ½ in hole saw to make the mounting plate for the sensor. (The inside diameter of the 2 1/2in hole saw is just the correct size for the mounting plate) The sensor was centered in the Lexan and mounted to the Lexan with 2 x 2.5mm stainless screws, thru the Lexan, with a nut that was pre-tighten, and a nylon washer to get the correct distant from the sensor to the Lexan, then the sensor, another nylon washer on top and finally a nut. Lexan was selected as its resistant to fuel-oil.
 
@@ -15,8 +15,7 @@ The sensor wires were connected to the ESP32 D1 style board to GND, +3.3V, SDA o
 Programming of the ESP32 was done via its micro-USB connector. 
 
         
- 
-***Programing the firmware***
+## Programing the firmware
 
 The sensor use on the project is an ST-Micro VL53L1X time of flight optical sensor, using the Tasmota Open source IOT firmware for ESP32 with its Berry scripting language. It provides a rich framework for develop IOT projects like this. We looks at other sensor options like SR04M ultrasonic sensor, but decided on the VL53L1X optical device. Another option would be the older VL53L0X with some minor changes to the software.
 
