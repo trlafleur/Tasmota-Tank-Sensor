@@ -68,7 +68,7 @@ class FOTank : Driver
     #build an global array-->list to store sensor for filtering
     static buf = []
     # this table is from the manufacturer datasheet, showing total gallons in inches, 44 entries plus a zero-entry. 
-    static Tank275 = [0,2,5,9,14,19,25,31,37,44,51,58,65,72,80,87,94,101,108,115,123,130,137,144,151,158,166,173,180,187,194,201,209,216,223,230,236,243,249,254,260,265,269,272,275]
+    static Tank275 = [2,5,9,14,19,25,31,37,44,51,58,65,72,80,87,94,101,108,115,123,130,137,144,151,158,166,173,180,187,194,201,209,216,223,230,236,243,249,254,260,265,269,272,275,275]
  
  
  
