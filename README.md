@@ -48,3 +48,8 @@ Then Load the new binary image in your ESP32 and re-boot it.
 Open the web page for this device, select Console, then Manage File System
 Rename this Berry file to "autoexec.be", then upload it to the ESP32 file system. 
 Reboot Tasmota, this Berry file will run after re-booting.
+
+~~~
+tasmota32-2022.01.3-VL53L1X.bin is compiled for VL53L1X and is located in GitHub
+user_config_override.h was used to build this .bin
+~~~
