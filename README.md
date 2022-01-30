@@ -10,7 +10,7 @@ The PVC coupling was prepared with a bead of Permatex 82180 oil resistant silico
 
 Above the sensor, a thin piece of cardboard was cut with hole in the center to route the cable to the ESP32. This allowed the ESP32 to free float above the sensor without any issue of contact between the sensor and the ESP32 board.
 
-The sensor wires were connected to the ESP32 D1 style board to GND, +3.3V, SDA on pin xx and SCL to pin xx.  To supply power, a cable was attached to GND and to VCC pins on the ESP32 board. This cable was routed to a cable gland mounted on top of a 2in PVC plug. The cable was connected to a 5V power source. (NOTE: 5V Only!!)
+The sensor wires were connected to the ESP32 D1 style board to GND, +3.3V, SDA on GPIO 23 and SCL to GPIO 22.  To supply power, a cable was attached to GND and to VCC pins on the ESP32 board. This cable was routed to a cable gland mounted on top of a 2in PVC plug. The cable was connected to a 5V power source. (NOTE: 5V Only!!)
 
 Programming of the ESP32 was done via its micro-USB connector. 
 
