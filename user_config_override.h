@@ -116,20 +116,23 @@ Examples :
 //#define USE_SR04
 #endif
 
-#undef USE_VL53L0X    // same addres as VL53L1
-#undef USE_TSL2561
-#undef USE_TSL2591
 
-#ifndef USE_VL53L1X 
+#ifndef USE_VL53L1X   // Time of Flight Sensor
 #define USE_VL53L1X 
 #endif
 
-#undef  I2CDRIVERS_0_31
-#define I2CDRIVERS_0_31  0x00000000
-#undef  I2CDRIVERS_32_63
-#define I2CDRIVERS_32_63 0x00400000  // enable only device VL53L1
-#undef  I2CDRIVERS_64_95
-#define I2CDRIVERS_64_95 0x00000000
+#ifdef USE_VL53L1X
+  #undef USE_VL53L0X    // same I2C addres as VL53L1
+  #undef USE_TSL2561
+  #undef USE_TSL2591
 
+  // I2C enable bit array
+  #undef  I2CDRIVERS_0_31
+  #define I2CDRIVERS_0_31  0x00000000
+  #undef  I2CDRIVERS_32_63
+  #define I2CDRIVERS_32_63 0x00400000   // enable only device 54, the VL53L1
+  #undef  I2CDRIVERS_64_95
+  #define I2CDRIVERS_64_95 0x00000000
+#endif
 
 #endif  // _USER_CONFIG_OVERRIDE_H_
