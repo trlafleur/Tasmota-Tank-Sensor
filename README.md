@@ -33,18 +33,24 @@ This will enable I2C on GPIO 22 and 23
 ~~~
 #define USER_TEMPLATE "{\"NAME\":\"Tank Sensor VL53L1X\",\"GPIO\":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,608,640,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1],\"FLAG\":0,\"BASE\":1,\"CMND\":\"SetOption8 1\",\"CMND\":\"Module 0\"}"
    
-    #ifndef USE_VL53L1X
-    #define USE_VL53L1X
-    #endif
-   
-    #define USE_BERRY_DEBUG 
+    
+#ifndef USE_VL53L1X   // Time of Flight Sensor
+#define USE_VL53L1X 
+#endif
 
-    #undef  I2CDRIVERS_0_31
-    #define I2CDRIVERS_0_31  0x00000000
-    #undef  I2CDRIVERS_32_63
-    #define I2CDRIVERS_32_63 0x00400000  // enable only device VL53L1
-    #undef  I2CDRIVERS_64_95
-    #define I2CDRIVERS_64_95 0x00000000
+#ifdef USE_VL53L1X
+  #undef USE_VL53L0X    // same I2C addres as VL53L1
+  #undef USE_TSL2561
+  #undef USE_TSL2591
+
+  // I2C enable bit array
+  #undef  I2CDRIVERS_0_31
+  #define I2CDRIVERS_0_31  0x00000000
+  #undef  I2CDRIVERS_32_63
+  #define I2CDRIVERS_32_63 0x00400000   // enable only device 54, the VL53L1
+  #undef  I2CDRIVERS_64_95
+  #define I2CDRIVERS_64_95 0x00000000
+#endif
 ~~~
 To load this file, compile Tasmota32 with the option above...
 Then Load the new binary image in your ESP32 and re-boot it. 
