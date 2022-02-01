@@ -39,8 +39,11 @@ This will enable I2C on GPIO 22 and 23
    
     #define USE_BERRY_DEBUG 
 
+    #undef  I2CDRIVERS_0_31
     #define I2CDRIVERS_0_31  0x00000000
+    #undef  I2CDRIVERS_32_63
     #define I2CDRIVERS_32_63 0x00400000  // enable only device VL53L1
+    #undef  I2CDRIVERS_64_95
     #define I2CDRIVERS_64_95 0x00000000
 ~~~
 To load this file, compile Tasmota32 with the option above...
