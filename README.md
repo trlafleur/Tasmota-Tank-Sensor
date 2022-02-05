@@ -9,7 +9,7 @@ Please see this tech note for sensor cover materal:
 
 The sensor was prepared with 4 x 28 awg 6inch wires that will be connected later to the ESP32 board. The sensor body was made from a 2in PVC coupling, threaded on one end for the tank, and “slip” fitting on the other. A sheet of clear 1/16in Lexan was cut with a 2 ½ in hole saw to make the mounting plate for the sensor. (The inside diameter of the 2 1/2in hole saw is just the correct size for the mounting plate) The sensor was centered in the Lexan and mounted to the Lexan with 2 x 2.5mm stainless screws, thru the Lexan, with a nut that was pre-tighten, and a nylon washer to get the correct distance from the sensor to the Lexan, then the sensor, another nylon washer on top and finally a nut. Lexan was selected as its resistance to fuel oil.
 
-The PVC coupling was prepared with a bead of Permatex 82180 oil-resistant silicon on the inside ridge of the coupling.  The sensor assembled was then pressed inside the coupling onto the black silicon to form a vapor-free seal from the tank to the sensor. A weight was added to keep pressure on the bond, and it was left to cure for 12hr.
+The PVC coupling was prepared with a bead of Permatex 82180 oil-resistant silicone on the inside ridge of the coupling.  The sensor assembled was then pressed inside the coupling onto the black silicone to form a vapor-free seal from the tank to the sensor. A weight was added to keep pressure on the bond, and it was left to cure for 12hr.
 
 Above the sensor, a thin piece of cardboard was cut with a hole in the center to route the cable to the ESP32. This allowed the ESP32 to free float above the sensor without any issue of contact between the sensor and the ESP32 board.
 
