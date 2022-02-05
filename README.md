@@ -2,8 +2,6 @@
 # Tasmota-Tank-Sensor
 Tasmota-Berry Tank Sensor for fuel-oil volume measurement using a VL53L1X or SR04 sensor
 
-More detail and code at:   `https://github.com/trlafleur/Tasmota-Tank-Sensor`
-
 
 ## The Sensor body
 
