@@ -42,7 +42,7 @@ This will enable I2C on GPIO 22 and 23
 #endif
 
 #ifdef USE_VL53L1X
-  #undef USE_VL53L0X    // same I2C addres as VL53L1
+  #undef USE_VL53L0X    // same I2C address as VL53L1
   #undef USE_TSL2561
   #undef USE_TSL2591
 
@@ -60,6 +60,8 @@ Then Load the new binary image in your ESP32 and re-boot it.
 Open the web page for this device, select Console, then Manage File System
 Rename the Berry file to "autoexec.be", then upload it to the ESP32 file system. 
 Reboot Tasmota, the Berry file will run after re-booting.
+
+Added a simple Node-Red flow to send an email if tank is low...
 
 ~~~
 tasmota32-2022.01.3-VL53L1X.bin is compiled for VL53L1X and is located in GitHub
