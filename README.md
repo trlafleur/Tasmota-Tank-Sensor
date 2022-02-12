@@ -14,10 +14,11 @@ The PVC coupling was prepared with a bead of Permatex 82180 oil-resistant silico
 Above the sensor, a thin piece of cardboard was cut with a hole in the center to route the cable to the ESP32. This allowed the ESP32 to free float above the sensor without any issue of contact between the sensor and the ESP32 board.
 
 The sensor wires were connected to the ESP32 D1 style board to GND, +3.3V, SDA on GPIO 23, and SCL to GPIO 22.  To supply power, a cable was attached to GND and to VCC pins on the ESP32 board. This cable was routed to a cable gland mounted on top of a 2in PVC plug. The cable was connected to a 5V power source. (NOTE: 5V Only!!)  PVC plug was pressed fit into the coupling, not glued, I use some white tape to seal plug to body of coupling.
-Programming of the ESP32 was done via its micro-USB connector. 
 
         
 ## Programming the firmware
+
+Programming of the ESP32 was done via its micro-USB connector. 
 
 The sensor used on the project is an ST-Micro VL53L1X time of flight optical sensor, using the Tasmota Open source IOT firmware for ESP32 with its Berry scripting language. It provides a rich framework for developing IoT projects like this. We looks at other sensor options like SR04M ultrasonic sensor but decided on the VL53L1X optical device. Another option would be the older VL53L0X with some minor changes to the software.
 
