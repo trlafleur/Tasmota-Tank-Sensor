@@ -7,7 +7,7 @@ Please see this tech note for sensor cover materal:
 
 ## The Sensor body
 
-The sensor was prepared with 4 x 28 awg 6inch wires that will be connected later to the ESP32 board. The sensor body was made from a 2in PVC coupling, threaded on one end for the tank, and “slip” fitting on the other. A sheet of clear 1/16in Lexan was cut with a 2 ½ in hole saw to make the mounting plate for the sensor. (The inside diameter of the 2 1/2in hole saw is just the correct size for the mounting plate) The sensor was centered in the Lexan and mounted to the Lexan with 2 x 2.5mm stainless screws, thru the Lexan, with a nut that was pre-tighten, and a nylon washer to get the correct distance from the sensor to the Lexan, then the sensor, another nylon washer on top and finally a nut. Lexan was selected as its resistance to fuel oil.
+The sensor was prepared with 4 x 28 awg 6-inch wires that will be connected later to the ESP32 board. The sensor body was made from a 2in PVC coupling, threaded on one end for the tank, and “slip” fitting on the other. A sheet of clear 1/16in Lexan was cut with a 2 ½ in hole saw to make the mounting plate for the sensor. (The inside diameter of the 2 1/2in hole saw is just the correct size for the mounting plate) The sensor was centered in the Lexan and mounted to the Lexan with 2 x 2.5mm stainless screws, thru the Lexan, with a nut that was pre-tighten, and a nylon washer to get the correct distance from the sensor to the Lexan, then the sensor, another nylon washer on top and finally a nut. Lexan was selected as its resistance to fuel oil.
 
 The PVC coupling was prepared with a bead of Permatex 82180 oil-resistant silicone on the inside ridge of the coupling.  The sensor assembled was then pressed inside the coupling onto the black silicone to form a vapor-free seal from the tank to the sensor. A weight was added to keep pressure on the bond, and it was left to cure for 12hr.
 
@@ -24,7 +24,7 @@ The sensor used on the project is an ST-Micro VL53L1X time of flight optical sen
 
 Tasmota has many, many options, it supports a web interface and a full MQTT delivery of sensors data to a downstream device like Node-Red, Grafana, or home automation system, it also has a very rich scripting language (Berry) available.
 
-The standard release (Ver: 10.1.0.0) that we used did not load the driver for the VL53L1X as a standard option, and we then needed to re-compile the program, which was done via Visual Studio Code and a copy of the source-tree from GitHub. A pre-compiled binary is available in GitHub for this project.
+The standard release (Ver: 10.0.0.0) that we used did not load the driver for the VL53L1X as a standard option, and we then needed to re-compile the Tasmota program, which was done via Visual Studio Code and a copy of the source-tree from GitHub. A pre-compiled binary is available in GitHub for this project.
 
 It appears that the I2C driver for the VL53L1X does not play well with some of the other pre-define drivers in Tasmota. To solve this issue we needed to disable all of the I2C drivers except this one…
 
@@ -58,10 +58,16 @@ This will enable I2C on GPIO 22 and 23
 To load this file, compile Tasmota32 with the option above...
 Then Load the new binary image in your ESP32 and re-boot it. 
 Open the web page for this device, select Console, then Manage File System
-Rename the Berry file to "autoexec.be", then upload it to the ESP32 file system. 
+Rename the Berry file your using to "autoexec.be", then upload it to the ESP32 file system. 
 Reboot Tasmota, the Berry file will run after re-booting.
 
-Added a simple Node-Red flow to send an email if tank is low...
+There are three version of the Berry script flies for this project:
+~~~
+Tank_Code3-VL53L1.be            Is for the VL53L1 TOF sensor with table lookup
+Tank_Code4-VL53L1.be            As above, but also use linear interpolation of the lookup-table
+Tank_Code3-SR04M.be             Is for the SR04 ultrasonic sensor sensor
+~~~
+A simple Node-Red flow that is include in GitHub will send an email if tank is low...
 
 ~~~
 tasmota32-2022.01.3-VL53L1X.bin is compiled for VL53L1X and is located in GitHub
