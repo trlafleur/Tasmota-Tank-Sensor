@@ -68,7 +68,7 @@ Tank_Code4-VL53L1.be            As above, but also use linear interpolation of t
 Tank_Code3-SR04M.be             Is for the SR04 ultrasonic sensor sensor
 ~~~
 A simple Node-Red flow that is include in GitHub will send an email if tank is low...
-
+Yes, I know that Tasmota can also send email, but this separates sensor from control.
 ~~~
 tasmota32-2022.01.3-VL53L1X.bin is compiled for VL53L1X and is located in GitHub
 user_config_override.h was used to build this .bin
