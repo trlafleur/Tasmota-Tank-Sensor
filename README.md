@@ -57,7 +57,7 @@ This will enable I2C on GPIO 22 and 23
 ~~~
 To load this file, compile Tasmota32 with the option above...
 Then Load the new binary image in your ESP32 and re-boot it. 
-Open the web page for this device, select Console, then Manage File System
+Open the web page for this device, select Console, then Manage File System,
 Rename the Berry file your using to "autoexec.be", then upload it to the ESP32 file system. 
 Reboot Tasmota, the Berry file will run after re-booting.
 
