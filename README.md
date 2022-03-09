@@ -68,10 +68,11 @@ Open the web page for this device, select Console, then Manage File System,
 Rename the Berry file your using to "autoexec.be", then upload it to the ESP32 file system. 
 Reboot Tasmota, the Berry file will run after re-booting.
 
-There are three version of the Berry script flies for this project:
+There are four version of the Berry script flies for this project:
 ~~~
 Tank_Code3-VL53L1.be            Is for the VL53L1 TOF sensor with table lookup
 Tank_Code4-VL53L1.be            As above, but also use linear interpolation of the lookup-table
+Tank_Code4b-VL53L1.be           As above, but for 330 gal tank
 Tank_Code3-SR04M.be             Is for the SR04 ultrasonic sensor sensor
 ~~~
 A simple Node-Red flow that is include in GitHub will send an email if tank is low...
