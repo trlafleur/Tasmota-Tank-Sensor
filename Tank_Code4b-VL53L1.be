@@ -47,7 +47,7 @@
     -----------  ---  ----------------------------------------------------------
     28-Jan-2022  1.0  TRL - 1st release
     26-Feb-2022  1.1  TRL - Linear Interpolation version
-    09-Mar-2022  1.2  RTL - Added 330 gal tank
+    09-Mar-2022  1.2  TRL - Added 330 gal tank
     
     Notes:  1)  Tested with 11.0.3(tasmota)
     
