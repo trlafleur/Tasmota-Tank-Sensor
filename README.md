@@ -41,15 +41,24 @@ and re-compile of Tasmota ESP32.
 This will enable I2C on GPIO 22 and 23
 
 ~~~
-#define USER_TEMPLATE "{\"NAME\":\"Tank Sensor VL53L1X\",\"GPIO\":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,608,640,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1],\"FLAG\":0,\"BASE\":1,\"CMND\":\"SetOption8 1\",\"CMND\":\"Module 0\"}"
+// we are using I2C SDA at GPIO22, and SCL at GPIO23
+#define USER_TEMPLATE "{\"NAME\":\"Tank Sensor VL53L1X\",\"GPIO\":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,608,640,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1],\"FLAG\":0,\"BASE\":18,\"CMND\":\"SetOption8 1\",\"CMND\":\"Module 0\"}"
    
-    
-#ifndef USE_VL53L1X   // Time of Flight Sensor
-#define USE_VL53L1X 
+// we are using I2C SDA at GPIO7, and SCL at GPIO6
+//#define USER_TEMPLATE "{\"NAME\":\"Tank Sensor VL53L1X\",\"GPIO\":[1,1,1,1,1,1,608,640,1,1,1,1,1,1,1,1,0,1,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1,1,1],\"FLAG\":0,\"BASE\":18,\"CMND\":\"SetOption8 1\",\"CMND\":\"Module 0\"}"
+//                           {"NAME":"Tank Sensor VL53L1X","GPIO":[1,1,1,1,1,1,608,640,1,1,1,1,1,1,1,1,0,1,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1,1,1],"FLAG":0,"BASE":18}
+
+#ifdef    MODULE
+  #undef  MODULE
+  #define MODULE USER_MODULE
 #endif
 
-#ifdef USE_VL53L1X
-  #undef USE_VL53L0X    // same I2C address as VL53L1
+#ifndef   USE_VL53L1X       // Time of Flight Sensor
+  #define USE_VL53L1X 
+#endif
+
+#ifdef   USE_VL53L1X
+  #undef USE_VL53L0X        // same I2C address as VL53L1
   #undef USE_TSL2561
   #undef USE_TSL2591
 
@@ -57,7 +66,7 @@ This will enable I2C on GPIO 22 and 23
   #undef  I2CDRIVERS_0_31
   #define I2CDRIVERS_0_31  0x00000000
   #undef  I2CDRIVERS_32_63
-  #define I2CDRIVERS_32_63 0x00400000   // enable only device 54, the VL53L1
+  #define I2CDRIVERS_32_63 0x00400000   // enable only device 54, --> the VL53L1
   #undef  I2CDRIVERS_64_95
   #define I2CDRIVERS_64_95 0x00000000
 #endif
