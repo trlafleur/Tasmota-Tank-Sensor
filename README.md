@@ -92,5 +92,6 @@ Note-Red Flow
 Files used to build Tasmota
 ~~~
 tasmota32-2022.01.3-VL53L1X.bin is compiled for VL53L1X and is located in GitHub
+tasmota32s3_15.2.0.2_VL53L1X.bin is compiled for VL53L1X for a ESP32S3
 user_config_override.h was used to build this .bin
 ~~~
