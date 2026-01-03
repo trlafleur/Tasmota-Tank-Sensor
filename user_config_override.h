@@ -34,8 +34,8 @@
  *   - All parameters can be persistent changed online using commands via MQTT, WebConsole or Serial.
 \*****************************************************************************************************/
 
-/*
-Examples :
+// /*
+//Examples :
 
 // -- Master parameter control --------------------
 #undef  CFG_HOLDER
@@ -43,14 +43,14 @@ Examples :
 
 // -- Setup your own Wifi settings  ---------------
 #undef  STA_SSID1
-#define STA_SSID1         "YourSSID"             // [Ssid1] Wifi SSID
+#define STA_SSID1         "your ssid"             // [Ssid1] Wifi SSID
 
 #undef  STA_PASS1
-#define STA_PASS1         "YourWifiPassword"     // [Password1] Wifi password
+#define STA_PASS1         "your passsword"     // [Password1] Wifi password
 
 // -- Setup your own MQTT settings  ---------------
 #undef  MQTT_HOST
-#define MQTT_HOST         "your-mqtt-server.com" // [MqttHost]
+#define MQTT_HOST         "Your MQTT Server" // [MqttHost]
 
 #undef  MQTT_PORT
 #define MQTT_PORT         1883                   // [MqttPort] MQTT port (10123 on CloudMQTT)
@@ -85,44 +85,26 @@ Examples :
 #endif
 
 // !!! Remember that your changes GOES AT THE BOTTOM OF THIS FILE right before the last #endif !!!
-*/
+//*/
 
-#ifdef ESP32
+// we are using I2C SDA at GPIO22, and SCL at GPIO23
+#define USER_TEMPLATE "{\"NAME\":\"Tank Sensor VL53L1X\",\"GPIO\":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,608,640,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1],\"FLAG\":0,\"BASE\":18,\"CMND\":\"SetOption8 1\",\"CMND\":\"Module 0\"}"
+   
+// we are using I2C SDA at GPIO7, and SCL at GPIO6
+//#define USER_TEMPLATE "{\"NAME\":\"Tank Sensor VL53L1X\",\"GPIO\":[1,1,1,1,1,1,608,640,1,1,1,1,1,1,1,1,0,1,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1,1,1],\"FLAG\":0,\"BASE\":18,\"CMND\":\"SetOption8 1\",\"CMND\":\"Module 0\"}"
+//                           {"NAME":"Tank Sensor VL53L1X","GPIO":[1,1,1,1,1,1,608,640,1,1,1,1,1,1,1,1,0,1,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1,1,1],"FLAG":0,"BASE":18}
 
-#undef  USER_TEMPLATE
-#define USER_TEMPLATE "{\"NAME\":\"Tank Sensor VL53L1X\",\"GPIO\":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,608,640,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1],\"FLAG\":0,\"BASE\":1,\"CMND\":\"SetOption8 1\",\"CMND\":\"Module 0\"}"
-//#define USER_TEMPLATE "{\"NAME\":\"Tank Monitor SR04\",\"GPIO\":[1,1,1,1,1,1,1,1,1856,1888,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1],\"FLAG\":0,\"BASE\":1,\"CMND\":\"SetOption8 1\",\"CMND\":\"Module 0\"}"
-
-#undef  MODULE
-#define MODULE USER_MODULE 
-
-#ifndef USE_BERRY_DEBUG
-#define USE_BERRY_DEBUG 
+#ifdef    MODULE
+  #undef  MODULE
+  #define MODULE USER_MODULE
 #endif
 
-#endif  // ESP32
-
-#ifndef USE_I2C
-#define USE_I2C
+#ifndef   USE_VL53L1X       // Time of Flight Sensor
+  #define USE_VL53L1X 
 #endif
 
-#undef  MQTT_NO_RETAIN
-#define MQTT_NO_RETAIN         true
-
-#undef DEBUG_TASMOTA_SENSOR
-#define DEBUG_TASMOTA_SENSOR
-
-#ifndef USE_SR04
-//#define USE_SR04
-#endif
-
-
-#ifndef USE_VL53L1X   // Time of Flight Sensor
-#define USE_VL53L1X 
-#endif
-
-#ifdef USE_VL53L1X
-  #undef USE_VL53L0X    // same I2C addres as VL53L1
+#ifdef   USE_VL53L1X
+  #undef USE_VL53L0X        // same I2C address as VL53L1
   #undef USE_TSL2561
   #undef USE_TSL2591
 
@@ -130,9 +112,9 @@ Examples :
   #undef  I2CDRIVERS_0_31
   #define I2CDRIVERS_0_31  0x00000000
   #undef  I2CDRIVERS_32_63
-  #define I2CDRIVERS_32_63 0x00400000   // enable only device 54, the VL53L1
+  #define I2CDRIVERS_32_63 0x00400000   // enable only device 54, --> the VL53L1
   #undef  I2CDRIVERS_64_95
   #define I2CDRIVERS_64_95 0x00000000
 #endif
 
-#endif  // _USER_CONFIG_OVERRIDE_H_
+#endif  // end of _USER_CONFIG_OVERRIDE_H_
