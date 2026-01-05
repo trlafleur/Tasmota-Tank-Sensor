@@ -42,10 +42,10 @@ This will enable I2C on GPIO 22 and 23
 
 ~~~
 // we are using I2C SDA at GPIO22, and SCL at GPIO23
-#define USER_TEMPLATE "{\"NAME\":\"Tank Sensor VL53L1X\",\"GPIO\":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,608,640,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1],\"FLAG\":0,\"BASE\":18,\"CMND\":\"SetOption8 1\",\"CMND\":\"Module 0\"}"
+// #define USER_TEMPLATE "{\"NAME\":\"Tank Sensor VL53L1X\",\"GPIO\":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,608,640,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1],\"FLAG\":0,\"BASE\":18,\"CMND\":\"SetOption8 1\",\"CMND\":\"Module 0\"}"
    
 // we are using I2C SDA at GPIO7, and SCL at GPIO6
-//#define USER_TEMPLATE "{\"NAME\":\"Tank Sensor VL53L1X\",\"GPIO\":[1,1,1,1,1,1,608,640,1,1,1,1,1,1,1,1,0,1,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1,1,1],\"FLAG\":0,\"BASE\":18,\"CMND\":\"SetOption8 1\",\"CMND\":\"Module 0\"}"
+#define USER_TEMPLATE "{\"NAME\":\"Tank Sensor VL53L1X\",\"GPIO\":[1,1,1,1,1,1,608,640,1,1,1,1,1,1,1,1,0,1,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1,1,1],\"FLAG\":0,\"BASE\":18,\"CMND\":\"SetOption8 1\",\"CMND\":\"Module 0\"}"
 //                           {"NAME":"Tank Sensor VL53L1X","GPIO":[1,1,1,1,1,1,608,640,1,1,1,1,1,1,1,1,0,1,0,0,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1,1,1],"FLAG":0,"BASE":18}
 
 #ifdef    MODULE
@@ -53,8 +53,15 @@ This will enable I2C on GPIO 22 and 23
   #define MODULE USER_MODULE
 #endif
 
+// LV53L1X defines...
 #ifndef   USE_VL53L1X       // Time of Flight Sensor
   #define USE_VL53L1X 
+#endif
+
+#ifdef    VL53L1X_DISTANCE_MODE
+  #undef  VL53L1X_DISTANCE_MODE
+  #define VL53L1X_DISTANCE_MODE Long    // Short, Medium, Long, Unknown
+
 #endif
 
 #ifdef   USE_VL53L1X
@@ -77,13 +84,19 @@ Open the web page for this device, select Console, then Manage File System,
 Rename the Berry file your using to "autoexec.be", then upload it to the ESP32 file system. 
 Reboot Tasmota, the Berry file will run after re-booting.
 
-There are four version of the Berry script flies for this project:
+There are five version of the Berry script flies for this project:
 ~~~
 Tank_Code3-VL53L1.be            Is for the VL53L1 TOF sensor with table lookup
 Tank_Code4-VL53L1.be            As above, but also use linear interpolation of the lookup-table
 Tank_Code4b-VL53L1.be           As above, but for 330 gal tank
+Tank_Code4d-VL53L1.be           As above, but for Tasmota ver > 12.2.1 (See note below)
 Tank_Code3-SR04M.be             Is for the SR04 ultrasonic sensor sensor
 ~~~
+In versions 12.2.1, a change was made to the VL53L1 driver in Tasmota to change distance output
+from MM to CM. (issue 17021). Also in Tasmota 15.2, calls to Berry function​s can no longer have a space
+between function and ​its operand (...), function(...)​ is ok, function​ (...)​ is not!
+(See #24154 and berry-lang/berry#497)
+
 A simple Node-Red flow that is include in GitHub will send an email if tank is low...
 Yes, I know that Tasmota can also send email, but this separates sensor from control.
 ~~~
