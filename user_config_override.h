@@ -43,14 +43,14 @@
 
 // -- Setup your own Wifi settings  ---------------
 #undef  STA_SSID1
-#define STA_SSID1         "your ssid"             // [Ssid1] Wifi SSID
+#define STA_SSID1         "YourSSID"             // [Ssid1] Wifi SSID
 
 #undef  STA_PASS1
-#define STA_PASS1         "your passsword"     // [Password1] Wifi password
+#define STA_PASS1         "YourPass"     // [Password1] Wifi password
 
 // -- Setup your own MQTT settings  ---------------
 #undef  MQTT_HOST
-#define MQTT_HOST         "Your MQTT Server" // [MqttHost]
+#define MQTT_HOST         "YourMQTTServer" // [MqttHost]
 
 #undef  MQTT_PORT
 #define MQTT_PORT         1883                   // [MqttPort] MQTT port (10123 on CloudMQTT)
@@ -99,14 +99,22 @@
   #define MODULE USER_MODULE
 #endif
 
+// LV53L1X defines...
 #ifndef   USE_VL53L1X       // Time of Flight Sensor
   #define USE_VL53L1X 
+#endif
+
+#ifdef    VL53L1X_DISTANCE_MODE
+  #undef  VL53L1X_DISTANCE_MODE
+  #define VL53L1X_DISTANCE_MODE Long    // Short, Medium, Long, Unknown
+
 #endif
 
 #ifdef   USE_VL53L1X
   #undef USE_VL53L0X        // same I2C address as VL53L1
   #undef USE_TSL2561
   #undef USE_TSL2591
+
 
   // I2C enable bit array
   #undef  I2CDRIVERS_0_31
