@@ -107,7 +107,6 @@
 #ifdef    VL53L1X_DISTANCE_MODE
   #undef  VL53L1X_DISTANCE_MODE
   #define VL53L1X_DISTANCE_MODE Long    // Short, Medium, Long, Unknown
-
 #endif
 
 #ifdef   USE_VL53L1X
