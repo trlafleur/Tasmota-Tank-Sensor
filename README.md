@@ -31,15 +31,17 @@ The sensor used on the project is an ST-Micro VL53L1X time of flight optical sen
 
 Tasmota has many, many options, it supports a web interface and a full MQTT delivery of sensors data to a downstream device like Node-Red, Grafana, or home automation system, it also has a very rich scripting language (Berry) available.
 
-The standard release (Ver: 10.0.0.0) that we used did not load the driver for the VL53L1X as a standard option, and we then needed to re-compile the Tasmota program, which was done via Visual Studio Code and a copy of the source-tree from GitHub. A pre-compiled binary is available in GitHub for this project.
+The standard release (Ver: 10.0.0.0) that we used did not load the driver for the VL53L1X as a standard option, and we then needed to re-compile the Tasmota program, which was done via Visual Studio Code with Platformio and a copy of the source-tree from GitHub. A pre-compiled binary is available in GitHub for this project.
 
 It appears that the I2C driver for the VL53L1X does not play well with some of the other pre-define drivers in Tasmota. To solve this issue we needed to disable all of the I2C drivers except this one…
 
 All changes were made  in one file:  tasmota/user_config_override.h 
 and re-compile of Tasmota ESP32.
 
-This will enable I2C on GPIO 22 and 23
+This was tested with an ESP32-D1 module, a Feather ESP32-V2 and an ESP32S3 module.
+(note: I2C ports are different on each module)
 
+This will enable I2C on GPIO 22 and 23
 ~~~
 // we are using I2C SDA at GPIO22, and SCL at GPIO23
 // #define USER_TEMPLATE "{\"NAME\":\"Tank Sensor VL53L1X\",\"GPIO\":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,608,640,0,1,1,1,0,0,0,0,1,1,1,1,1,0,0,1],\"FLAG\":0,\"BASE\":18,\"CMND\":\"SetOption8 1\",\"CMND\":\"Module 0\"}"
@@ -93,9 +95,9 @@ Tank_Code4d-VL53L1.be           As above, but for Tasmota ver > 12.2.1 (See note
 Tank_Code3-SR04M.be             Is for the SR04 ultrasonic sensor sensor
 ~~~
 In versions 12.2.1, a change was made to the VL53L1 driver in Tasmota to change distance output
-from MM to CM. (issue 17021). Also in Tasmota 15.2, calls to Berry function​s can no longer have a space
+from MM to CM. (issue: 17021). Also in Tasmota 15.2, calls to Berry function​s can no longer have a space
 between function and ​its operand (...), function(...)​ is ok, function​ (...)​ is not!
-(See #24154 and berry-lang/berry#497)
+(See issue: 24154 and berry-lang/berry#497)
 
 A simple Node-Red flow that is include in GitHub will send an email if tank is low...
 Yes, I know that Tasmota can also send email, but this separates sensor from control.
